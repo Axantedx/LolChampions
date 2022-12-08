@@ -6,7 +6,7 @@ import Zoom from "@material-ui/core/Zoom";
 import { motion } from "framer-motion";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import LOLLOGO from "./lol_logo.png";
-
+   
 import {
   imagechampapi,
   imageskillapi,
