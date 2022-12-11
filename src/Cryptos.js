@@ -3,23 +3,20 @@ import { riotapi, imagechampapi } from "./config/riotapi";
 import { useState, useEffect } from "react";
 import React from "react";
 import "./App.css";
-import LOLLOGO from "./lol_logo.png";
+import LOLLOGO from "./assets/lol_logo.png";
 import axios from "axios";
 import Champion from "./Champion";
+import loadingImage from "./assets/Yasuo_18.jpg"
 
 import {
     useParams
   } from "react-router-dom";
 
-const callCoinsAPI =
-  "https://api.coinstats.app/public/v1/coins?skip=0&limit=100&currency=MYR";
-
 function CryptoCoins() {
   const params = useParams();
-  const [showloading, setshowloading] = useState(true);
-  const [searchedCoin, setSearchCoin] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [championList, setchampionList] = useState([]);
-  const API_KEY = "RGAPI-e69a7006-002d-44e1-bdd3-02a233f20b30";
+
   // console.log(searchPlayer)
 
   const list = {
@@ -32,7 +29,7 @@ function CryptoCoins() {
       },
     },
     hidden: {
-      opacity: 0,
+      opacity: 1,
       transition: {
         when: "afterChildren",
       },
@@ -51,7 +48,7 @@ function CryptoCoins() {
     const response = await axios
       .get(`${riotapi}/champion.json`)
       .catch((errors) => console.log("Error:", errors));
-    console.log("GET ALL MY CHAMPIONNNN", Object.values(response.data.data));
+    console.log("GET ALL MY CHAMPIONNNN", Object.values(response));
     getChampData(Object.values(response.data.data));
   };
 
@@ -71,62 +68,14 @@ function CryptoCoins() {
     setchampionList(champArr);
   };
 
-  //   useEffect(() => {
-  //     autoGetAllCoin();
-  //   }, []);
-
-  //   const autoGetAllCoin = () => {
-  //     fetch(`${riotapi}/champion.json`)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-
-  //         //setAllCoin(data);
-  //         //etMovies(data.results);
-  //       });
-  //   };
-
-  const searchForCoin = () => {
-    console.log(callCoinsAPI);
-
-    // axios.get(getSummonerID).then(function (response){
-    //   console.log(response);
-    // }).catch(function (error){
-    //   console.log(error)
-    // })
-
-    // fetch(getSummonerID).then((response) => {
-    //   console.log(response.json);
-    // })
-
-    fetch(callCoinsAPI)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        console.log(data.coins);
-
-        setSearchCoin(data.coins);
-        //etMovies(data.results);
-      });
-
-    // fetch(getSummonerID)
-    // .then((res)=>res.json())
-    // .then(data=>{
-    //   console.log(data)
-
-    // })
-  };
-
   return (
     <div className="app__container">
-      <header>
+   
+      <header className="header">
         <img src={LOLLOGO} className="lol__logo" alt="lollogo" />
-        <h1>Crypto Card Viewer</h1>
-        <input
-          type="text"
-          onChange={(event) => setSearchCoin(event.target.value)}
-        ></input>
-        <button onClick={searchForCoin}>Search Crypto</button>
+        <div  style={{ height: "100px"}}>
+        </div>
+
       </header>
 
       <div>
@@ -138,12 +87,6 @@ function CryptoCoins() {
                 style={{
                   display: "flex",
                   flexWrap: "wrap",
-                  listStyleType: "none",
-                  paddingInlineStart: "0px",
-                  marginBlockStart: "0px",
-                  marginBlockEnd: "0px",
-                  alignItems: "center",
-                  justifyContent: "center",
                 }}
                 initial="hidden"
                 animate="visible"
@@ -153,7 +96,8 @@ function CryptoCoins() {
                   <motion.li key={champ.id} variants={items}>
                     <Champion
                         data={champ}
-                      id={championList.findIndex((p) => p.id === champ.id) + 1}
+                      id={championList.findIndex((mychamp) => mychamp.id === champ.id) +1}
+                      
                       name={champ.name}
                       image={`${imagechampapi}/${champ.id}_0.jpg`}
                       tags={champ.tags}

@@ -27,6 +27,16 @@
   
 }
 
+.app__container .header {
+  background: url("../src/assets/lol_banner.jpeg");
+  background-size: cover;
+  width:100%;
+
+
+  overflow: hidden;
+  
+}
+
 .card__header {
   width: -webkit-fill-available;
   display: flex;
@@ -94,7 +104,7 @@
 }
 
 .App-header {
-  background: url("../src/assets/images/lol_logo.png");
+  background: url("../src/assets/lol_logo.png");
   display: flex;
   flex-direction: column;
   align-items: center;

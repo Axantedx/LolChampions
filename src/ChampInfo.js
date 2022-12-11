@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ChampionInfo.css";
 import { useLocation, useParams } from "react-router-dom";
-import { Tooltip } from "@material-ui/core";
-import Zoom from "@material-ui/core/Zoom";
-import { motion } from "framer-motion";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import LOLLOGO from "./lol_logo.png";
+import LOLLOGO from "./assets/lol_logo.png";
    
 import {
   imagechampapi,
@@ -32,8 +29,6 @@ function ChampInfo() {
      }, [useImage]);
 
   const getImage = (event, message) => {
-    
-    // 👇️ refers to the image element
     console.log(event.target);
     console.log(message);
     setImage(`${splash}/${message}.jpg`)
@@ -60,12 +55,12 @@ function ChampInfo() {
             <img onClick={(event) => getImage(event, objectchamp.id+"_1")} src={`${imagechampapi}/${objectchamp.id}_1.jpg`} />
             <img onClick={(event) => getImage(event, objectchamp.id+"_2")} src={`${imagechampapi}/${objectchamp.id}_2.jpg`} />
             <img onClick={(event) => getImage(event, objectchamp.id+"_3")} src={`${imagechampapi}/${objectchamp.id}_3.jpg`} />
-            <img src={`${imagechampapi}/${objectchamp.id}_4.jpg`} />
-            <img src={`${imagechampapi}/${objectchamp.id}_5.jpg`} />
-            <img src={`${imagechampapi}/${objectchamp.id}_6.jpg`} />
-            <img src={`${imagechampapi}/${objectchamp.id}_7.jpg`} />
-            <img src={`${imagechampapi}/${objectchamp.id}_8.jpg`} />
-            <img src={`${imagechampapi}/${objectchamp.id}_9.jpg`} />
+            <img onClick={(event) => getImage(event, objectchamp.id+"_4")} src={`${imagechampapi}/${objectchamp.id}_4.jpg`} />
+            <img onClick={(event) => getImage(event, objectchamp.id+"_5")} src={`${imagechampapi}/${objectchamp.id}_5.jpg`} />
+            <img onClick={(event) => getImage(event, objectchamp.id+"_6")} src={`${imagechampapi}/${objectchamp.id}_6.jpg`} />
+            <img onClick={(event) => getImage(event, objectchamp.id+"_7")} src={`${imagechampapi}/${objectchamp.id}_7.jpg`} />
+            <img onClick={(event) => getImage(event, objectchamp.id+"_8")} src={`${imagechampapi}/${objectchamp.id}_8.jpg`} />
+            <img onClick={(event) => getImage(event, objectchamp.id+"_9")} src={`${imagechampapi}/${objectchamp.id}_9.jpg`} />
           </div>
         </div>
   
@@ -138,8 +133,6 @@ function ChampInfo() {
             <div className="title">
             Return to Hompage
             </div>
-          
-            
         </Link>
         </div>
         

@@ -5,6 +5,7 @@ import Zoom from "@material-ui/core/Zoom";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 function Champion({ data, id, name, tags, image }) {
+  console.log("GET MY IDS", id + " " + name);
   return (
     <div
       className="thumbnail__container noselect"
